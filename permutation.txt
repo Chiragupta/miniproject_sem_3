@@ -1,0 +1,101 @@
+#include<stdio.h>                                                      //headerfile
+#include<conio.h>                                                      //headerfile
+#include<string.h>                                                     //headerfile
+void sort(char [],int );                                               //sort function declairation
+void perm(char [10], int , int ) ;                                     //permutation function declairation
+int c1=0;
+int main()                                                             //main function
+{
+   FILE *fp;
+	char c,t;
+	char a[10];
+	int i=0;
+	int j=0,k=0,m=0,n=0,l=0,ch=1;
+	fp=fopen("aa.txt","w");                                        //opening file in write mode
+	do
+	{
+		printf("\nenter string");
+		scanf("%s",a);
+		fputs(a,fp);                                           //getting character in a file
+		fputc('\n',fp);
+		printf("enter 1 to continue else press 0");
+		scanf("%d",&ch);
+	}while(ch==1);
+	fclose(fp);                                                    //closing file
+	fp=fopen("aa.txt","r");                                        //opening file in read mode
+	j=0,i=0;
+	while((c = fgetc(fp)) != '.')                                  //while loop                
+	{
+		if(c!='\n')
+		{
+		  a[n]=c;
+		  n++;
+	    }
+	   else
+	   {
+	   	  a[n]='\0';
+		  l=strlen(a);
+	   	  sort(a,l);
+	   	  c1=0;
+	   	  perm(a, k, l) ;                                      //calling perm function
+	      n=0;
+	      printf("\n");
+       }
+    	
+	}
+	fclose(fp);
+	getch() ;
+    return 0;
+}
+void sort(char a[],int l)                                              //defining sort function
+{
+int i,j;
+char t;
+for(i=0;i<l;i++)
+{
+	for(j=0;j<l-1-i;j++)                                           //bubble sorting
+	{ 
+	if(a[j]>a[j+1])
+	{
+		t=a[j];
+		a[j]=a[j+1];
+		a[j+1]=t;
+	}
+	}
+	}
+}	
+void perm(char a[10], int k, int n)                                    //defining perm function
+{
+    char t, d[10] ;
+    int i ;
+    if(k == n)
+    {
+    	if(c1==0)
+        {
+        	printf("%s",a);
+        	c1++;
+        }
+        
+        else
+        {
+        
+        printf(",%s", a) ;
+        }
+        
+        return ;
+    }
+    else
+    {
+        for(i = k ; i < n ; i++)
+        {
+            t = a[i] ;
+            a[i] = a[k] ;
+            a[k] = t ;
+            strcpy(d,a) ;
+            
+            perm(d, k + 1, n);                                          //calling perm function recursively
+        }
+    }
+    
+    
+}
